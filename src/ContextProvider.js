@@ -3,9 +3,8 @@ import * as contentful from "contentful"
 
 const Context = React.createContext()
 
-
 function ContextProvider({children}) {
-
+   
     const [posts, setPosts] = useState([])
 
     var client = contentful.createClient({
@@ -13,32 +12,23 @@ function ContextProvider({children}) {
       accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08' })
   
     function getBlogEntries() { 
-        console.log("im in getBlogEntries")  
         client.getEntries()
-        .then(entries => storeBlogEntries(entries))
+        .then(entries => {storeBlogEntries(entries)})
+        .catch(error => console.error(error))
     }
 
     function storeBlogEntries(entries) {
-
         let allBlogEntries = []
-
-        console.log("im in storeBlogEntries") 
-        // console.log(entries.items.map(element => {return element}))
-
         allBlogEntries = entries.items.map(element => {return element})
-        console.log("allBlogEntries array =")
-        console.log(allBlogEntries)
-
         setPosts(allBlogEntries)
-        console.log("this is posts")
-        console.log(posts)
     }
-    
 
-    useEffect(() => {getBlogEntries()} ,[])
+    useEffect(() => {
+        getBlogEntries()
+    } ,[])
 
     return(
-        <Context.Provider value="testvalue" >
+        <Context.Provider value={{posts}} >
             {children}
         </Context.Provider>
     )
