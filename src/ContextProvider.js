@@ -5,7 +5,7 @@ const Context = React.createContext()
 
 function ContextProvider({children}) {
    
-    const [posts, setPosts] = useState([])
+    const [allPosts, setAllPosts] = useState([])
 
     var client = contentful.createClient({
       space: '8h2joeckc394',
@@ -20,7 +20,7 @@ function ContextProvider({children}) {
     function storeBlogEntries(entries) {
         let allBlogEntries = []
         allBlogEntries = entries.items.map(element => {return element})
-        setPosts(allBlogEntries)
+        setAllPosts(allBlogEntries)
     }
 
     useEffect(() => {
@@ -28,7 +28,7 @@ function ContextProvider({children}) {
     } ,[])
 
     return(
-        <Context.Provider value={{posts}} >
+        <Context.Provider value={{allPosts}} >
             {children}
         </Context.Provider>
     )
