@@ -3,9 +3,7 @@ import {Link} from "react-router-dom"
 
 function Header() {
     return(<header>
-
-        <Link to></Link>
-
+        BLOG
     </header>)
 }
 

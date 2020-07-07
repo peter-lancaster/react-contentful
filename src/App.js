@@ -3,6 +3,8 @@ import './App.css';
 import {Context} from "./ContextProvider"
 import {Link} from "react-router-dom"
 import BlogItem from "./components/BlogItem"
+import Header from "./Header"
+import Footer from "./Footer"
 
 
 function App() {
@@ -29,9 +31,12 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div>
+      <Header />
+      <main>
       {blogPostList}
-
+      </main>
+      <Footer />
     </div>
   );
 }
