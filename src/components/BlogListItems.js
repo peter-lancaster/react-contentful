@@ -1,10 +1,11 @@
 import React from "react" 
 import BodyContentItem from "./BodyContentItem"
+import {Link} from "react-router-dom"
 
-
-function BlogItem({itemDetails}) {
+function BlogListItems({itemDetails}) {
 
     const title = itemDetails.title
+    const slug = itemDetails.slug
     const date = itemDetails.date
     const description = itemDetails.description.content[0].content[0].value
     const image = itemDetails.featuredImage.fields.file.url
@@ -17,7 +18,7 @@ function BlogItem({itemDetails}) {
     })
 
 
-    console.log("in BlogItem")
+    console.log("in BlogListItem")
 
     console.log(itemDetails)
 
@@ -26,15 +27,15 @@ function BlogItem({itemDetails}) {
 
 
     return(
-        <main>
-            <h1>{title}</h1>
+        <>
+            <Link to={`/${slug}`}><h1>{title}</h1></Link>
             <p>{description}</p>
             <p>{date}</p>
             <img alt={imageDescription} src={image} />
             <p>{fullContent}</p>
-        </main>
+        </>
     )
 }
 
 
-export default BlogItem
+export default BlogListItems

@@ -4,6 +4,8 @@ import * as contentful from "contentful"
 const Context = React.createContext()
 
 function ContextProvider({children}) {
+
+    console.log("ContextProvider")
    
     const [allPosts, setAllPosts] = useState([])
 
@@ -24,6 +26,7 @@ function ContextProvider({children}) {
     }
 
     useEffect(() => {
+        console.log("in useEffect")
         getBlogEntries()
     } ,[])
 

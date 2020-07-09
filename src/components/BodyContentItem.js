@@ -15,9 +15,9 @@ function BodyContentItem({item}) {
 
 
     return(
-        <>
+        <div>
         <p className={item.nodeType}>{item.content[0].value}</p>
-        </>
+        </div>
     )
 }
 

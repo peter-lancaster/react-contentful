@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import './App.css';
 import {Context} from "./ContextProvider"
-import {Link} from "react-router-dom"
-import BlogItem from "./components/BlogItem"
+import BlogListItems from "./components/BlogListItems"
 import Header from "./Header"
 import Footer from "./Footer"
+import {Switch, Route} from "react-router-dom"
 
 
 function App() {
@@ -16,17 +16,17 @@ function App() {
   // console.log("this is posts in App")
   // console.log(posts)
 
-  const blogPostList = allPosts.map(function(element, index) {
+  const blogList = allPosts.map(function(element, index) {
 
     console.log("in map")
-    console.log(element.fields.description.content.value)
-    return (<BlogItem key={index} itemDetails={element.fields}   />)
+    console.log(element)
+    return (<BlogListItems key={index} itemDetails={element.fields}   />)
   })
 
 
-  console.log("this is blogPostList in App")
+  console.log("this is blogList in App")
 
-  console.log(blogPostList)
+  console.log(blogList)
 
 
 
@@ -34,7 +34,10 @@ function App() {
     <div>
       <Header />
       <main>
-      {blogPostList}
+      <Switch>
+        <Route exact path ="/" >{blogList}</Route>
+        <Route path ={`/`} >{blogList}</Route>
+      </Switch>
       </main>
       <Footer />
     </div>
