@@ -1,6 +1,5 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import './App.css';
-import {Context} from "./ContextProvider"
 import BlogListItems from "./components/BlogListItems"
 import BlogItem from "./components/BlogItem"
 import Header from "./Header"
@@ -10,41 +9,38 @@ import useAllPosts from "./utils/useAllPosts"
 
 function App() {
 
-  console.log("App")
-
-  // const {allPosts, isLoading} = useAllPosts()
-
-  const {allPosts} = useContext(Context)
-
-  console.log("this is allPosts in App")
-  console.log(allPosts)
+  const {allPosts, isLoading} = useAllPosts()
 
   const blogList = allPosts.map(function(element, index) {
-
-    console.log("in map")
-    console.log(element)
     return (<BlogListItems key={index} itemDetails={element.fields}   />)
   })
 
+  if(isLoading) {
+    return (
+      <div>
+        <Header />
+        <main>
+          <p>Please wait.... loading blog entries</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Header />
+        <main>
+        <Switch>
+          <Route exact path ="/" >{blogList}</Route>
+          <Route path ="/:entrySlug" ><BlogItem /></Route>
+        </Switch>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
-  console.log("this is blogList in App")
-
-  console.log(blogList)
-
-
-
-  return (
-    <div>
-      <Header />
-      <main>
-      <Switch>
-        <Route exact path ="/" >{blogList}</Route>
-        <Route path ="/:entrySlug" ><BlogItem /></Route>
-      </Switch>
-      </main>
-      <Footer />
-    </div>
-  );
+ 
 }
 
 export default App;
