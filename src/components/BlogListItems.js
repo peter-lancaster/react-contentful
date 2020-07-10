@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 
 function BlogListItems({itemDetails}) {
 
+    console.log("in BlogListItem1")
+
     const title = itemDetails.title
     const slug = itemDetails.slug
     const date = itemDetails.date
@@ -18,7 +20,7 @@ function BlogListItems({itemDetails}) {
     })
 
 
-    console.log("in BlogListItem")
+    console.log("in BlogListItem2")
 
     console.log(itemDetails)
 

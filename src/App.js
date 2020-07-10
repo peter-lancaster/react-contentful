@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import './App.css';
 import {Context} from "./ContextProvider"
 import BlogListItems from "./components/BlogListItems"
+import BlogItem from "./components/BlogItem"
 import Header from "./Header"
 import Footer from "./Footer"
 import {Switch, Route} from "react-router-dom"
@@ -13,8 +14,8 @@ function App() {
 
   const {allPosts} = useContext(Context)
 
-  // console.log("this is posts in App")
-  // console.log(posts)
+  console.log("this is allPosts in App")
+  console.log(allPosts)
 
   const blogList = allPosts.map(function(element, index) {
 
@@ -36,7 +37,7 @@ function App() {
       <main>
       <Switch>
         <Route exact path ="/" >{blogList}</Route>
-        <Route path ={`/`} >{blogList}</Route>
+        <Route path ="/:entrySlug" ><BlogItem /></Route>
       </Switch>
       </main>
       <Footer />
