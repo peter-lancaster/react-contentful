@@ -3,6 +3,7 @@ import BodyContentItem from "./BodyContentItem"
 import {useParams} from "react-router-dom"
 import * as contentful from "contentful"
 
+
 function BlogItem() {
 
     console.log("BlogItem top")
@@ -10,6 +11,8 @@ function BlogItem() {
     const {entrySlug} = useParams()
     const [blogEntry, setBlogEntry] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
+    
 
     //Be careful Pete ! - Contentful "content type" is not the "content type" 
     // that is supplied on the "content" page within contentful!! Instead, 

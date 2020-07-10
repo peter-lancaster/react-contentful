@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react" 
 import * as contentful from "contentful"
 
+
 const Context = React.createContext()
 
 function ContextProvider({children}) {
-
     console.log("ContextProvider")
    
     const [allPosts, setAllPosts] = useState([])

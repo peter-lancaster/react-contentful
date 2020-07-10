@@ -6,11 +6,13 @@ import BlogItem from "./components/BlogItem"
 import Header from "./Header"
 import Footer from "./Footer"
 import {Switch, Route} from "react-router-dom"
-
+import useAllPosts from "./utils/useAllPosts"
 
 function App() {
 
   console.log("App")
+
+  // const {allPosts, isLoading} = useAllPosts()
 
   const {allPosts} = useContext(Context)
 

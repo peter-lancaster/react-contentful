@@ -15,10 +15,6 @@ function BlogListItems({itemDetails}) {
     const imageDescription = itemDetails.featuredImage.fields.description
     const bodyContentArray = itemDetails.body.content
 
-    const fullContent = bodyContentArray.map((element, input) => {
-        return <BodyContentItem key={input} item={element} />
-    })
-
 
     console.log("in BlogListItem2")
 
@@ -34,7 +30,6 @@ function BlogListItems({itemDetails}) {
             <p>{description}</p>
             <p>{date}</p>
             <img alt={imageDescription} src={image} />
-            <p>{fullContent}</p>
         </>
     )
 }
