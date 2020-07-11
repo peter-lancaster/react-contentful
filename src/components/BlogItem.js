@@ -5,6 +5,7 @@ import * as contentful from "contentful"
 import useSinglePost from "../utils/useSinglePost"
 
 
+
 function BlogItem() {
 
     console.log("BlogItem top")
@@ -32,13 +33,13 @@ function BlogItem() {
         })
 
         return(
-            <>
+            <div className="blog-item">
                 <h1>{title}</h1>
                 <p>{description}</p>
                 <p>{date}</p>
                 <img alt={imageDescription} src={image} />
                 <p>{fullContent}</p>
-            </>
+            </div>
         )
 
     }
