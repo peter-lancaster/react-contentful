@@ -10,10 +10,27 @@ import * as contentful from "contentful"
         .catch(error => console.error(error))
     }
    
-    const getSinglePost = (slug) => {
-        client.getEntries({"props.slug" : slug, "content_type": "testContent"})
-        .then(response => response.items)
+    function getSinglePost(inputSlug) {
+
+        console.log("starting getSinglePost, inputSlug is ")
+        console.log(inputSlug) 
+        
+        let responseReturn = {}   
+
+        client.getEntries({"fields.slug" : inputSlug, "content_type": "testContent"})
+        .then(response => {
+            console.log("I'm populating response return variable")
+            responseReturn = response
+            console.log(responseReturn)
+            return responseReturn
+            })
         .catch(error => console.error(error))
+
+        console.log("leaving getSinglePost, response return is ")
+        console.log(responseReturn) 
+
+
+        return responseReturn
     }
 
 

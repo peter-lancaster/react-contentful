@@ -1,9 +1,8 @@
 import {useState, useEffect} from "react" 
 import * as contentful from "contentful"
-import {getSinglelPost} from "./getContentfulContent"
+import {getSinglePost} from "./getContentfulContent"
 
 function useSinglePost(entrySlug) {
-
 
     console.log("I'm entering useSinglePost and my entryslug is ")
     console.log(entrySlug)
@@ -13,11 +12,13 @@ function useSinglePost(entrySlug) {
 
     function getBlogEntry() {
         
-        console.log("Im in getBlogEntry")
+        console.log("Im at start of getBlogEntry")
 
         var client = contentful.createClient({
             space: '8h2joeckc394',
             accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08' })
+
+        console.log("Im in middle of getBlogEntry")
         
         client.getEntries({"fields.slug" : entrySlug, "content_type": "testContent"})
         .then(response => {
@@ -28,12 +29,30 @@ function useSinglePost(entrySlug) {
             setIsLoading(false)}
             )
         .catch(error => console.error(error))
+
+        console.log("Im at end of getBlogEntry")
     }
-     
+
+
+    // function getBlogEntry() {
+        
+    //     console.log("Im at start of getBlogEntry")
+
+    //     setBlogEntry(getSinglePost(entrySlug))
+    //     console.log("Im in middle of getBlogEntry")
+    //     console.log(blogEntry)
+        
+
+
+    //     console.log("Im at end of getBlogEntry")
+    // }
+
     useEffect(() => {
         console.log("i'm in useSinglePost useEffect")
         getBlogEntry()}
         ,[]) 
+
+    // getBlogEntry();
 
     // PETE - THE useEffect above is very necessary, if it isn't there (and is just replaced with a straight call
     // to (getBlogEntry(), then you get stuck in an infinite loop, because the getBlogEntry() function changes
@@ -54,3 +73,8 @@ function useSinglePost(entrySlug) {
 
 
 export default useSinglePost
+
+//NOTES AND LEARNINGS FROM THIS WORK
+
+//1) If you have a custom hook which uses a fetch() (or any other method which returns a promise)
+//and that custom hook changes state variables, 

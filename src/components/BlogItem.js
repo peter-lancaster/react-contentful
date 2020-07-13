@@ -43,7 +43,7 @@ function BlogItem() {
                 <p>{description}</p>
                 <p>{date}</p>
                 <img alt={imageDescription} src={image} />
-                <p>{fullContent}</p>
+                <div>{fullContent}</div>
             </div>
         )
 
