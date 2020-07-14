@@ -4,17 +4,10 @@ import dateReformat from "../utils/dateReformat"
 
 
 function BlogListItems({itemDetails}) {
-
     
-
     const title = itemDetails.title
     const slug = itemDetails.slug
-    // const date = (itemDetails.date.slice(9,10))+ " " +itemDetails.date.slice(6,7)+ " " + (itemDetails.date.slice(0,4)) 
-
     const date = dateReformat(itemDetails.date) 
-
-    // console.log("testDate = ")
-    // console.log(testDate)
 
     const description = itemDetails.description.content[0].content[0].value
     const image = itemDetails.featuredImage.fields.file.url

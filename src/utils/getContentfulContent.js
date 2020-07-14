@@ -4,9 +4,14 @@ import * as contentful from "contentful"
     space: '8h2joeckc394',
     accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08'})
 
+    //-----------------------------------------------------------------
+
     function getAllPosts() {
-        return client.getEntries().then(response => response.items)
+        return client.getEntries()
+        .then(response => response)
     }
+
+    //-----------------------------------------------------------------
       
     function getSinglePost(slug){
         console.log("I'm entering getSinglePost")
@@ -25,6 +30,8 @@ import * as contentful from "contentful"
         console.log(response.items[0].fields)
         return response.items[0].fields
     }
+
+    //-----------------------------------------------------------------
 
 export {getAllPosts, getSinglePost}
 
