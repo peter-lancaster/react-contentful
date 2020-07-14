@@ -4,35 +4,28 @@ import * as contentful from "contentful"
     space: '8h2joeckc394',
     accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08'})
 
-    const getAllPosts = () => {
-        client.getEntries()
-        .then(entries => entries.items)
-        .catch(error => console.error(error))
+    function getAllPosts() {
+        return client.getEntries().then(response => response.items)
     }
-   
-    function getSinglePost(inputSlug) {
+      
+    function getSinglePost(slug){
+        console.log("I'm entering getSinglePost")
+            return client
+                .getEntries({
+                    'fields.slug': slug,
+                    content_type: 'testContent'
+                })
+            .then(response => newFunction(response))
+        }
 
-        console.log("starting getSinglePost, inputSlug is ")
-        console.log(inputSlug) 
-        
-        let responseReturn = {}   
-
-        client.getEntries({"fields.slug" : inputSlug, "content_type": "testContent"})
-        .then(response => {
-            console.log("I'm populating response return variable")
-            responseReturn = response
-            console.log(responseReturn)
-            return responseReturn
-            })
-        .catch(error => console.error(error))
-
-        console.log("leaving getSinglePost, response return is ")
-        console.log(responseReturn) 
-
-
-        return responseReturn
+    function newFunction(response) {
+        console.log("in newFunction. response = ")
+        console.log(response)
+        console.log("in newFunction. response.items = ")
+        console.log(response.items[0].fields)
+        return response.items[0].fields
     }
-
-
 
 export {getAllPosts, getSinglePost}
+
+

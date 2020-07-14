@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react" 
+import React from "react" 
 import BodyContentItem from "./BodyContentItem"
 import {useParams} from "react-router-dom"
 import dateReformat from "../utils/dateReformat"
@@ -22,13 +22,13 @@ function BlogItem() {
             </div>
         )
     } else {
-        const title = blogEntry.items[0].fields.title
-        const date = dateReformat(blogEntry.items[0].fields.date)
-        const description = blogEntry.items[0].fields.description.content[0].content[0].value
-        const image = blogEntry.items[0].fields.featuredImage.fields.file.url
-        const imageTitle = blogEntry.items[0].fields.featuredImage.fields.title
-        const imageDescription = blogEntry.items[0].fields.featuredImage.fields.description
-        const bodyContentArray = blogEntry.items[0].fields.body.content
+        const title = blogEntry.title
+        const date = dateReformat(blogEntry.date)
+        const description = blogEntry.description.content[0].content[0].value
+        const image = blogEntry.featuredImage.fields.file.url
+        const imageTitle = blogEntry.featuredImage.fields.title
+        const imageDescription = blogEntry.featuredImage.fields.description
+        const bodyContentArray = blogEntry.body.content
 
         const fullContent = bodyContentArray.map((element, input) => {
             return <BodyContentItem key={input} item={element} />

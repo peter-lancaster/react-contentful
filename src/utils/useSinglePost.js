@@ -6,51 +6,56 @@ function useSinglePost(entrySlug) {
 
     console.log("I'm entering useSinglePost and my entryslug is ")
     console.log(entrySlug)
+
+    const promise = getSinglePost(entrySlug)
+
+    console.log("I'm in the middle of useSinglePost, promise = ")
+    console.log(promise)
     
     const [blogEntry, setBlogEntry] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-
-    function getBlogEntry() {
-        
-        console.log("Im at start of getBlogEntry")
-
-        var client = contentful.createClient({
-            space: '8h2joeckc394',
-            accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08' })
-
-        console.log("Im in middle of getBlogEntry")
-        
-        client.getEntries({"fields.slug" : entrySlug, "content_type": "testContent"})
-        .then(response => {
-            console.log("IM POPULATING BLOGENTRY NOW !!! ")
-            setBlogEntry(response)})
-        .then(() => 
-            {console.log("IM SETTING IS LOADING TO FALSE")
-            setIsLoading(false)}
-            )
-        .catch(error => console.error(error))
-
-        console.log("Im at end of getBlogEntry")
-    }
-
 
     // function getBlogEntry() {
         
     //     console.log("Im at start of getBlogEntry")
 
-    //     setBlogEntry(getSinglePost(entrySlug))
-    //     console.log("Im in middle of getBlogEntry")
-    //     console.log(blogEntry)
-        
+    //     var client = contentful.createClient({
+    //         space: '8h2joeckc394',
+    //         accessToken: 'dIQ8tryIq-BA621gJKeUyecDfVRndSEjxsu_Cflzz08' })
 
+    //     console.log("Im in middle of getBlogEntry")
+        
+    //     client.getEntries({"fields.slug" : entrySlug, "content_type": "testContent"})
+    //     .then(response => {
+    //         console.log("IM POPULATING BLOGENTRY NOW !!! ")
+    //         setBlogEntry(response)})
+    //     .then(() => 
+    //         {console.log("IM SETTING IS LOADING TO FALSE")
+    //         setIsLoading(false)}
+    //         )
+    //     .catch(error => console.error(error))
 
     //     console.log("Im at end of getBlogEntry")
     // }
 
+
+    // useEffect(() => {
+    //     console.log("i'm in useSinglePost useEffect")
+    //     getBlogEntry()}
+    //     ,[]) 
+
+
+
     useEffect(() => {
-        console.log("i'm in useSinglePost useEffect")
-        getBlogEntry()}
-        ,[]) 
+        console.log("im in useSinglePost useEffect")
+        promise.then(result => {
+            console.log("this is my promise result")
+            console.log(result)
+            setBlogEntry(result)
+            setIsLoading(false)
+        })
+
+    } ,[])
 
     // getBlogEntry();
 
